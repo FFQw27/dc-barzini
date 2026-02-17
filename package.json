@@ -1,0 +1,14 @@
+{
+  "name": "barzini-plus-minus-bot",
+  "version": "1.0.0",
+  "description": "Barzini ailesi icin Discord arti/eksi botu",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "check": "node --check index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3"
+  }
+}
