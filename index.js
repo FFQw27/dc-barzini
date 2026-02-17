@@ -6,9 +6,23 @@ const {
   Partials,
   SlashCommandBuilder,
 } = require("discord.js");
-const config = require("./config");
+function loadConfig() {
+  const configPath = process.pkg
+    ? path.join(path.dirname(process.execPath), "config.js")
+    : path.join(__dirname, "config.js");
 
-const DATA_FILE = path.join(__dirname, "data.json");
+  if (!fs.existsSync(configPath)) {
+    throw new Error(`config.js bulunamadi: ${configPath}`);
+  }
+
+  delete require.cache[require.resolve(configPath)];
+  return require(configPath);
+}
+
+const config = loadConfig();
+const DATA_FILE = process.pkg
+  ? path.join(path.dirname(process.execPath), "data.json")
+  : path.join(__dirname, "data.json");
 
 function loadData() {
   if (!fs.existsSync(DATA_FILE)) {
@@ -120,7 +134,7 @@ async function main() {
   }
 
   const client = new Client({
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages],
+    intents: [GatewayIntentBits.Guilds],
     partials: [Partials.Channel],
   });
 
@@ -241,7 +255,15 @@ async function main() {
     });
   });
 
-  client.login(config.token);
+  try {
+    await client.login(config.token);
+  } catch (error) {
+    if (error && (error.code === 4014 || String(error.message || "").includes("disallowed intents"))) {
+      console.error("Discord intent hatasi: Botu guncel dosyalarla calistirdigindan emin ol.");
+      console.error("Hala devam ederse Developer Portal > Bot > Privileged Gateway Intents kisimlarini kapatip tekrar dene.");
+    }
+    throw error;
+  }
 }
 
 main().catch((error) => {

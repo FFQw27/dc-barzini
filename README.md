@@ -58,3 +58,19 @@ Bu projede o intent kaldirildi, ekstra bir ayar acman gerekmiyor.
 Yine de ayni hatayi alirsan:
 - Botun guncel kodu kullandigindan emin ol (`npm install` sonra `npm start`)
 - Discord Developer Portal > Bot ekraninda gereksiz Privileged Gateway Intents kapali olsun
+
+
+## Windows icin start.exe olusturma
+
+Istegin uzerine `start.exe` uretebilmen icin komut eklendi:
+
+```bash
+npm run build:exe
+```
+
+Bu komut sonunda klasorde `start.exe` olusur.
+
+> Onemli: `start.exe` ile ayni klasorde `config.js` dosyasi bulunmali.
+
+Alternatif hizli baslatma (exe derlemeden):
+- `start.cmd` dosyasina cift tikla (arka planda `npm start` calistirir).
