@@ -48,3 +48,13 @@ Botta en az şu izinler olmalı:
 - Use Application Commands
 - View Channels
 - Read Message History
+
+
+## Hata cozum (Used disallowed intents)
+
+Eger `Used disallowed intents` hatasi aliyorsan nedeni genelde **GuildMembers intenti** olur.
+Bu projede o intent kaldirildi, ekstra bir ayar acman gerekmiyor.
+
+Yine de ayni hatayi alirsan:
+- Botun guncel kodu kullandigindan emin ol (`npm install` sonra `npm start`)
+- Discord Developer Portal > Bot ekraninda gereksiz Privileged Gateway Intents kapali olsun

@@ -120,7 +120,7 @@ async function main() {
   }
 
   const client = new Client({
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.DirectMessages],
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages],
     partials: [Partials.Channel],
   });
 
